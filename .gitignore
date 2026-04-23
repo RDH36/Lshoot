@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# screenshoot-app specific
+/exports/
+/projects/*/assets/*
+!/projects/*/assets/.gitkeep
+/scripts/test-*.ts
+/aso-project
+/private
+/specs
