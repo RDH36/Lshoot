@@ -1,7 +1,6 @@
-// Template: Flipia tight — offline AI
-import { DeviceFrame } from "@/components/aso";
+// Template: Flipia tight — offline AI (real capture: Horsligne.jpg)
+import { AppMockup } from "@/components/aso";
 import { FlipiaLayout } from "../components/Layout";
-import { GameMockup } from "../components/GameMockup";
 import { useT } from "../i18n";
 
 const ACCENT = "#A2340A";
@@ -24,18 +23,12 @@ export default function Offline({ lang }: { lang?: string }) {
         </p>
       }
       mockup={
-        <DeviceFrame
-          variant="iphone-15-pro"
-          className="h-full w-auto !rounded-[7%] !p-[2%]"
+        <AppMockup
+          src="/api/assets/flipia/Horsligne.jpg"
+          device="iphone-15-pro"
+          className="!rounded-[7%] !p-[2%]"
           screenClassName="!rounded-[5%]"
-        >
-          <GameMockup
-            {...t.ui}
-            opponentName={t.offline.opponentName}
-            opponentAvatar={t.offline.opponentAvatar}
-            opponentSubtitle={t.offline.opponentSubtitle}
-          />
-        </DeviceFrame>
+        />
       }
     />
   );

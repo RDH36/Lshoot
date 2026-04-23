@@ -48,18 +48,18 @@ export default async function HomePage() {
 
 function Logo({ size = 24 }: { size?: number }) {
   return (
-    <div
-      className="rounded-md flex items-center justify-center font-black"
-      style={{
-        background: "#059669",
-        color: "#ffffff",
-        width: size,
-        height: size,
-        fontSize: size * 0.5,
-      }}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      width={size}
+      height={size}
+      fill="none"
+      aria-label="Lshoot logo"
     >
-      L
-    </div>
+      <rect width="32" height="32" rx="7" fill="#059669" />
+      <path d="M10 8H14V20H20V24H10V8Z" fill="#ffffff" />
+      <circle cx="23" cy="22" r="2.5" fill="#ffffff" />
+    </svg>
   );
 }
 

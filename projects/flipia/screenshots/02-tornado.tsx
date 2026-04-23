@@ -1,7 +1,6 @@
-// Template: Flipia tight — feature Tornade
-import { DeviceFrame } from "@/components/aso";
+// Template: Flipia tight — feature Tornade (real capture: tornade.png)
+import { AppMockup } from "@/components/aso";
 import { FlipiaLayout } from "../components/Layout";
-import { GameMockup } from "../components/GameMockup";
 import { useT } from "../i18n";
 
 const ACCENT = "#f59e0b";
@@ -24,13 +23,12 @@ export default function Tornado({ lang }: { lang?: string }) {
         </p>
       }
       mockup={
-        <DeviceFrame
-          variant="iphone-15-pro"
-          className="h-full w-auto !rounded-[7%] !p-[2%]"
+        <AppMockup
+          src="/api/assets/flipia/tornade.png"
+          device="iphone-15-pro"
+          className="!rounded-[7%] !p-[2%]"
           screenClassName="!rounded-[5%]"
-        >
-          <GameMockup {...t.ui} />
-        </DeviceFrame>
+        />
       }
     />
   );
