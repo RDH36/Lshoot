@@ -3,6 +3,7 @@ import { listProjects } from "@/lib/project-loader";
 import { FadeIn } from "@/components/fade-in";
 
 const ACCENT = "#059669";
+const GITHUB_URL = "https://github.com/RDH36/Lshoot";
 const SHOWCASE_SLUG = "flipia";
 const SHOWCASE_SCREENS = [
   "01-duel",
@@ -71,6 +72,17 @@ function Nav() {
           <Link href="/docs" style={{ color: "#57534e" }}>
             Docs
           </Link>
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-1.5 hover:opacity-80"
+            style={{ color: "#57534e" }}
+            aria-label="GitHub"
+          >
+            <GitHubIcon />
+            <span className="hidden sm:inline">GitHub</span>
+          </a>
           <Link
             href="/dashboard"
             className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[13px] font-medium"
@@ -194,14 +206,39 @@ function Footer() {
       style={{ borderColor: "#e7e5e4", background: "#f5f5f4" }}
     >
       <div
-        className="container mx-auto max-w-6xl px-6 py-6 flex items-center justify-between text-[12px]"
+        className="container mx-auto max-w-6xl px-6 py-6 flex flex-wrap items-center justify-between gap-4 text-[12px]"
         style={{ color: "#78716c" }}
       >
         <span>Your local Lshoot instance</span>
-        <Link href="/docs" className="hover:opacity-70">
-          Help →
-        </Link>
+        <div className="flex items-center gap-5">
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-1.5 hover:opacity-70"
+          >
+            <GitHubIcon /> GitHub
+          </a>
+          <Link href="/docs" className="hover:opacity-70">
+            Help →
+          </Link>
+        </div>
       </div>
     </footer>
+  );
+}
+
+function GitHubIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M12 .5C5.373.5 0 5.873 0 12.5c0 5.302 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.042-1.609-4.042-1.609-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.729.083-.729 1.205.085 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.419-1.305.762-1.604-2.665-.303-5.467-1.332-5.467-5.93 0-1.31.468-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 016.002 0c2.292-1.552 3.298-1.23 3.298-1.23.655 1.652.243 2.873.119 3.176.77.84 1.235 1.911 1.235 3.221 0 4.61-2.807 5.624-5.48 5.921.43.371.814 1.102.814 2.222 0 1.604-.014 2.897-.014 3.29 0 .32.19.694.8.576C20.565 22.296 24 17.8 24 12.5 24 5.873 18.627.5 12 .5z" />
+    </svg>
   );
 }
