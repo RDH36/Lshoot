@@ -6,14 +6,26 @@ format in a single command.
 
 ## Quickstart
 
+**One-liner** (recommended) — clones the repo, swaps the marketing landing for your
+personal dashboard, and offers to install dependencies:
+
 ```bash
-git clone <repo-url> lshoot
-cd lshoot
+npx github:RDH36/Lshoot my-app
+cd my-app
+pnpm dev
+```
+
+**Manual** — if you prefer cloning yourself:
+
+```bash
+git clone https://github.com/RDH36/Lshoot.git my-app
+cd my-app
+node cli/index.mjs .       # or skip and just run pnpm install + pnpm dev
 pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Click **Get Started** to open the docs.
+Open [http://localhost:3000](http://localhost:3000). Click **Open dashboard** to manage your projects, or **Docs** for a guided walkthrough.
 
 ## Documentation
 
@@ -55,6 +67,7 @@ Every other file is yours: screenshots in `projects/{your-app}/`, components, li
 |---------|--------|
 | `pnpm dev` | Local server with Turbopack |
 | `pnpm build` | Production build |
+| `pnpm cli <dir>` | Set up a fresh Lshoot instance in `<dir>` (clone + customize) |
 | `node scripts/check-landing.mjs` | Manually verify the landing is unchanged |
 
 ## Project docs (development)

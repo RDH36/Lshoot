@@ -1,0 +1,43 @@
+{
+  "name": "lshoot",
+  "version": "0.1.0",
+  "description": "Set up your own Lshoot instance — clones the repo, replaces the marketing landing with a personal dashboard, optionally installs deps.",
+  "type": "module",
+  "bin": {
+    "lshoot": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "commands",
+    "lib",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "lshoot",
+    "aso",
+    "app-store",
+    "screenshots",
+    "cli",
+    "scaffold",
+    "create",
+    "init",
+    "react",
+    "nextjs"
+  ],
+  "homepage": "https://github.com/RDH36/Lshoot#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RDH36/Lshoot.git",
+    "directory": "cli"
+  },
+  "bugs": {
+    "url": "https://github.com/RDH36/Lshoot/issues"
+  },
+  "author": "RDH36",
+  "license": "MIT"
+}

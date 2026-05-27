@@ -2,10 +2,14 @@
   "name": "screenshoot-app",
   "version": "0.1.0",
   "private": true,
+  "bin": {
+    "lshoot": "./cli/index.mjs"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "cli": "node cli/index.mjs",
     "prepare": "husky"
   },
   "dependencies": {
