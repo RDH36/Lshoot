@@ -5,6 +5,8 @@ import {
   Fredoka,
   Nunito,
   Roboto,
+  Plus_Jakarta_Sans,
+  Inter,
 } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -37,6 +39,19 @@ const roboto = Roboto({
   weight: ["400", "500", "700", "900"],
 });
 
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 
 export const metadata: Metadata = {
   title: "Lshoot — ASO screenshots by code",
@@ -51,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} ${nunito.variable} ${roboto.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} ${nunito.variable} ${roboto.variable} ${plusJakarta.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
