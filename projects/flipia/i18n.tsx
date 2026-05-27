@@ -54,7 +54,7 @@ const FR: T = {
   duel: {
     headline: (c) => (
       <>
-        Le memory
+        La mémoire
         <br />
         devient un <span style={{ color: c }}>duel</span>
       </>
