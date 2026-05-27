@@ -1,26 +1,35 @@
 import Link from "next/link";
 import { listProjects } from "@/lib/project-loader";
+import { FadeIn } from "@/components/fade-in";
 
 const ACCENT = "#059669";
+const SHOWCASE_SLUG = "flipia";
+const SHOWCASE_SCREENS = [
+  "01-duel",
+  "02-tornado",
+  "04-ranks",
+  "05-offline",
+  "07-stats",
+  "08-daily",
+];
 
 export default async function HomePage() {
   const projects = await listProjects();
-  const hasProjects = projects.length > 0;
+  const hasShowcase = projects.some((p) => p.slug === SHOWCASE_SLUG);
 
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen flex flex-col"
       style={{ background: "#fafaf9", color: "#1c1917" }}
     >
-      <Nav projectCount={projects.length} />
-      <main className="container mx-auto max-w-5xl px-6 py-16">
-        <Hero hasProjects={hasProjects} />
-        {hasProjects ? (
-          <ProjectsGrid projects={projects} />
-        ) : (
-          <EmptyState />
-        )}
-        <QuickLinks />
+      <Nav />
+      <main className="flex-1">
+        <Hero />
+        {hasShowcase ? (
+          <FadeIn delay={150}>
+            <Showcase />
+          </FadeIn>
+        ) : null}
       </main>
       <Footer />
     </div>
@@ -44,7 +53,7 @@ function Logo({ size = 24 }: { size?: number }) {
   );
 }
 
-function Nav({ projectCount }: { projectCount: number }) {
+function Nav() {
   return (
     <header
       className="sticky top-0 z-20 backdrop-blur border-b"
@@ -53,16 +62,10 @@ function Nav({ projectCount }: { projectCount: number }) {
         borderColor: "#e7e5e4",
       }}
     >
-      <div className="container mx-auto max-w-5xl px-6 h-14 flex items-center justify-between">
+      <div className="container mx-auto max-w-6xl px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-semibold text-[15px]">
           <Logo />
           <span>Lshoot</span>
-          <span
-            className="ml-1 text-[11px] font-mono px-1.5 py-0.5 rounded"
-            style={{ background: "#f5f5f4", color: "#78716c" }}
-          >
-            {projectCount} project{projectCount === 1 ? "" : "s"}
-          </span>
         </Link>
         <nav className="flex items-center gap-5 text-[13px]">
           <Link href="/docs" style={{ color: "#57534e" }}>
@@ -73,7 +76,7 @@ function Nav({ projectCount }: { projectCount: number }) {
             className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[13px] font-medium"
             style={{ background: ACCENT, color: "#ffffff" }}
           >
-            Open dashboard <span aria-hidden>→</span>
+            Dashboard <span aria-hidden>→</span>
           </Link>
         </nav>
       </div>
@@ -81,157 +84,106 @@ function Nav({ projectCount }: { projectCount: number }) {
   );
 }
 
-function Hero({ hasProjects }: { hasProjects: boolean }) {
+function Hero() {
   return (
-    <section className="text-center mb-16">
+    <section className="container mx-auto max-w-3xl px-6 pt-20 pb-12 text-center">
       <p
         className="text-[12px] uppercase tracking-[0.2em] font-medium"
         style={{ color: "#78716c" }}
       >
         Your Lshoot instance
       </p>
-      <h1 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight">
-        {hasProjects ? "Welcome back." : "Ready to ship your first app."}
+      <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+        ASO screenshots, written in code.
       </h1>
       <p
-        className="mt-4 text-base sm:text-lg max-w-xl mx-auto"
+        className="mt-6 text-base sm:text-lg max-w-xl mx-auto leading-relaxed"
         style={{ color: "#57534e" }}
       >
-        {hasProjects
-          ? "Pick a project below to keep iterating on your store screenshots."
-          : "Create a folder in projects/ with a config.json to get started, or read the docs for a guided walkthrough."}
+        Describe each App Store / Play Store screenshot as a React component.
+        Lshoot renders every Apple and Google format, in every language you
+        declare, into a single export folder. Everything runs locally.
       </p>
-    </section>
-  );
-}
-
-function ProjectsGrid({
-  projects,
-}: {
-  projects: Awaited<ReturnType<typeof listProjects>>;
-}) {
-  return (
-    <section className="mb-16">
-      <h2
-        className="text-[12px] uppercase tracking-[0.2em] font-medium mb-4"
-        style={{ color: "#78716c" }}
-      >
-        Your projects
-      </h2>
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 gap-px rounded-xl overflow-hidden border"
-        style={{ borderColor: "#e7e5e4", background: "#e7e5e4" }}
-      >
-        {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function ProjectCard({
-  project,
-}: {
-  project: Awaited<ReturnType<typeof listProjects>>[number];
-}) {
-  return (
-    <div className="p-5" style={{ background: "#fafaf9" }}>
-      <div className="flex items-baseline justify-between gap-3">
-        <h3 className="font-semibold text-[16px]">{project.config.name}</h3>
-        <code
-          className="text-[11px] font-mono px-1.5 py-0.5 rounded"
-          style={{ background: "#f5f5f4", color: "#78716c" }}
-        >
-          {project.slug}
-        </code>
-      </div>
-      <p className="mt-1 text-[12px]" style={{ color: "#78716c" }}>
-        {project.config.bundleId}
-      </p>
-      <div className="mt-4 flex items-center gap-3 text-[13px]">
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Link
-          href={`/dashboard?slug=${project.slug}`}
-          className="font-medium"
-          style={{ color: ACCENT }}
+          href="/docs"
+          className="inline-flex items-center gap-2 rounded-lg px-6 h-11 text-[14px] font-medium transition-colors"
+          style={{ background: ACCENT, color: "#ffffff" }}
         >
-          Open →
+          Read the docs <span aria-hidden>→</span>
         </Link>
         <Link
-          href={`/preview/${project.slug}/01-hero`}
-          target="_blank"
-          style={{ color: "#57534e" }}
+          href="/dashboard"
+          className="inline-flex items-center rounded-lg px-6 h-11 text-[14px] font-medium border"
+          style={{
+            borderColor: "#d6d3d1",
+            color: "#1c1917",
+            background: "#ffffff",
+          }}
         >
-          Preview
+          Open dashboard
         </Link>
       </div>
-    </div>
-  );
-}
-
-function EmptyState() {
-  return (
-    <section
-      className="text-center py-16 px-6 rounded-xl border mb-16"
-      style={{ borderColor: "#e7e5e4", background: "#ffffff" }}
-    >
-      <p className="text-[14px] font-medium" style={{ color: "#1c1917" }}>
-        No projects yet.
-      </p>
-      <p className="mt-2 text-[13px] max-w-md mx-auto" style={{ color: "#57534e" }}>
-        Drop a folder in{" "}
+      <p className="mt-6 text-[12px]" style={{ color: "#78716c" }}>
+        Local-first · No account · Runs on{" "}
         <code
-          className="px-1.5 py-0.5 rounded font-mono text-[11px]"
+          className="px-1.5 py-0.5 rounded text-[11px] font-mono"
           style={{ background: "#f5f5f4" }}
         >
-          projects/
-        </code>{" "}
-        with a <code className="font-mono text-[11px]">config.json</code>, or follow the
-        docs.
+          localhost:3000
+        </code>
       </p>
-      <Link
-        href="/docs"
-        className="inline-flex mt-5 items-center gap-2 rounded-lg px-5 h-10 text-[13px] font-medium"
-        style={{ background: ACCENT, color: "#ffffff" }}
-      >
-        Read the docs <span aria-hidden>→</span>
-      </Link>
     </section>
   );
 }
 
-function QuickLinks() {
-  const items = [
-    { href: "/dashboard", label: "Dashboard", desc: "Manage projects, export PNGs" },
-    { href: "/docs", label: "Docs", desc: "Quickstart, components, patterns" },
-    {
-      href: "https://github.com/RDH36/Lshoot",
-      label: "GitHub",
-      desc: "Source, issues, contribute",
-      external: true,
-    },
-  ];
+function Showcase() {
   return (
-    <section className="border-t pt-10" style={{ borderColor: "#e7e5e4" }}>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {items.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            {...(item.external
-              ? { target: "_blank", rel: "noreferrer noopener" }
-              : {})}
-            className="block p-4 rounded-lg border transition-colors"
-            style={{ borderColor: "#e7e5e4", background: "#ffffff" }}
-          >
-            <div className="font-medium text-[14px]">{item.label}</div>
-            <div className="mt-1 text-[12px]" style={{ color: "#78716c" }}>
-              {item.desc}
-            </div>
-          </Link>
+    <section className="container mx-auto max-w-6xl px-6 pb-20">
+      <div className="flex items-baseline justify-between mb-6">
+        <p
+          className="text-[12px] uppercase tracking-[0.2em] font-medium"
+          style={{ color: "#78716c" }}
+        >
+          Live examples
+        </p>
+        <p className="text-[12px]" style={{ color: "#78716c" }}>
+          Rendered from <code className="font-mono">projects/flipia/</code>
+        </p>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        {SHOWCASE_SCREENS.map((screen, i) => (
+          <FadeIn key={screen} delay={i * 80} distance={16}>
+            <PreviewCard screen={screen} />
+          </FadeIn>
         ))}
       </div>
     </section>
+  );
+}
+
+function PreviewCard({ screen }: { screen: string }) {
+  const SCALE = 0.12;
+  const INVERSE = Math.round((1 / SCALE) * 100);
+  return (
+    <Link
+      href={`/preview/${SHOWCASE_SLUG}/${screen}`}
+      target="_blank"
+      className="relative block aspect-[9/19.5] rounded-lg overflow-hidden border transition-colors"
+      style={{ borderColor: "#e7e5e4", background: "#ffffff" }}
+    >
+      <iframe
+        src={`/preview/${SHOWCASE_SLUG}/${screen}?format=phone&lang=en`}
+        className="absolute inset-0 origin-top-left pointer-events-none border-0"
+        style={{
+          transform: `scale(${SCALE})`,
+          width: `${INVERSE}%`,
+          height: `${INVERSE}%`,
+        }}
+        title={screen}
+        loading="lazy"
+      />
+    </Link>
   );
 }
 
@@ -242,13 +194,10 @@ function Footer() {
       style={{ borderColor: "#e7e5e4", background: "#f5f5f4" }}
     >
       <div
-        className="container mx-auto max-w-5xl px-6 py-6 flex items-center justify-between text-[12px]"
+        className="container mx-auto max-w-6xl px-6 py-6 flex items-center justify-between text-[12px]"
         style={{ color: "#78716c" }}
       >
-        <div className="flex items-center gap-2">
-          <Logo size={18} />
-          <span>Your local Lshoot instance · runs on localhost:3000</span>
-        </div>
+        <span>Your local Lshoot instance</span>
         <Link href="/docs" className="hover:opacity-70">
           Help →
         </Link>

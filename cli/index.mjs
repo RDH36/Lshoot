@@ -33,9 +33,9 @@ async function getVersion() {
 async function main() {
   const args = process.argv.slice(2).filter((a) => a !== "init");
 
-  if (args.length === 0 || args[0] === "--help" || args[0] === "-h") {
+  if (args[0] === "--help" || args[0] === "-h") {
     process.stdout.write(HELP);
-    process.exit(args.length === 0 ? 1 : 0);
+    process.exit(0);
   }
 
   if (args[0] === "--version" || args[0] === "-v") {

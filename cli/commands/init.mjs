@@ -3,7 +3,7 @@ import { rm } from "node:fs/promises";
 import { resolve, basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { banner, success, error, info, step, dim, code, path as fmtPath, blank, colors } from "../lib/ui.mjs";
-import { confirm } from "../lib/prompts.mjs";
+import { confirm, text } from "../lib/prompts.mjs";
 import { checkNode, checkGit, checkPnpm } from "../lib/checks.mjs";
 import { cloneRepo } from "../lib/clone.mjs";
 import { customizeClone } from "../lib/customize.mjs";
@@ -18,7 +18,24 @@ const DIR_NAME_RE = /^[a-z0-9][a-z0-9._-]*$/i;
 export default async function init(targetDir) {
   banner("Lshoot setup", "Clone the repo, replace the landing, install deps.");
 
-  validateTargetName(targetDir);
+  if (!targetDir) {
+    targetDir = await text({
+      message: "Where do you want to create your Lshoot instance?",
+      defaultValue: "lshoot",
+      validate: (value) => {
+        if (!DIR_NAME_RE.test(basename(value))) {
+          return "Use letters, digits, dot, underscore or dash.";
+        }
+        if (existsSync(resolve(value))) {
+          return `Directory already exists: ${resolve(value)}`;
+        }
+        return null;
+      },
+    });
+  } else {
+    validateTargetName(targetDir);
+  }
+
   const absTarget = resolve(targetDir);
 
   if (existsSync(absTarget)) {
