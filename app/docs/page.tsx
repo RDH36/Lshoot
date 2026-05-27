@@ -8,7 +8,8 @@ export const metadata = {
 
 const TOC = [
   { id: "intro", label: "Introduction" },
-  { id: "install", label: "Install & clone" },
+  { id: "quickstart-cli", label: "Quickstart with CLI" },
+  { id: "install", label: "Install manually" },
   { id: "first-run", label: "First run" },
   { id: "with-ai", label: "With Claude Code (AI)" },
   { id: "manually", label: "Manually" },
@@ -111,7 +112,94 @@ export default function DocsPage() {
             </p>
           </Section>
 
-          <Section id="install" title="Install & clone">
+          <Section id="quickstart-cli" title="Quickstart with CLI">
+            <p>
+              The fastest way to bootstrap your own Lshoot instance is the{" "}
+              <code>lshoot</code> CLI (zero dependency, ~9 KB). It clones the repo,
+              swaps the public marketing landing for your personal project
+              dashboard, and offers to install dependencies.
+            </p>
+
+            <h3>One command</h3>
+            <pre><code>{`npx lshoot my-app
+# or
+pnpm dlx lshoot my-app`}</code></pre>
+            <p>Then:</p>
+            <pre><code>{`cd my-app
+pnpm dev`}</code></pre>
+            <p>
+              Open <a href="http://localhost:3000">http://localhost:3000</a> — you
+              land on your own dashboard listing the projects in{" "}
+              <code>projects/</code>.
+            </p>
+
+            <h3>What the CLI does</h3>
+            <ol>
+              <li>
+                Clones <code>https://github.com/RDH36/Lshoot.git</code> into the
+                directory you name.
+              </li>
+              <li>
+                Wipes the original git history so you start fresh — your clone is
+                yours.
+              </li>
+              <li>
+                Replaces <code>app/page.tsx</code> with a project-dashboard
+                landing (lists your projects, links to <code>/dashboard</code> and{" "}
+                <code>/docs</code>) — not the public marketing page.
+              </li>
+              <li>
+                Removes the landing-protection files (<code>.landing-lock</code>,{" "}
+                <code>scripts/check-landing.mjs</code>,{" "}
+                <code>.husky/pre-commit</code>, the <code>prepare</code> script)
+                since you own this fork now.
+              </li>
+              <li>
+                Prompts you to run <code>pnpm install</code> (if pnpm is available).
+              </li>
+            </ol>
+
+            <h3>Requirements</h3>
+            <ul>
+              <li><strong>Node.js 20+</strong></li>
+              <li><strong>Git</strong></li>
+              <li>
+                <strong>pnpm</strong> (optional during install, required to run the
+                dev server — install via <code>corepack enable</code>)
+              </li>
+            </ul>
+
+            <h3>Other commands</h3>
+            <pre><code>{`lshoot --help          # show usage
+lshoot --version       # show the CLI version`}</code></pre>
+            <p>
+              Source on{" "}
+              <a
+                href="https://github.com/RDH36/Lshoot/tree/main/cli"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                GitHub
+              </a>{" "}
+              · package on{" "}
+              <a
+                href="https://www.npmjs.com/package/lshoot"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                npm
+              </a>
+              .
+            </p>
+          </Section>
+
+          <Section id="install" title="Install manually">
+            <p>
+              Prefer to clone yourself? Or already cloned and want to set things
+              up by hand? Follow the steps below. (If you used{" "}
+              <code>npx lshoot</code> above, skip this section — everything is
+              already done.)
+            </p>
             <p>Lshoot is a local-first Next.js app. Everything runs on your machine.</p>
 
             <h3>Prerequisites</h3>
