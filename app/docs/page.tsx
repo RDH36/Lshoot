@@ -2,7 +2,7 @@ import Link from "next/link";
 import { DocsSidebar } from "@/components/docs-sidebar";
 
 export const metadata = {
-  title: "Docs — Lshoot",
+  title: "Docs",
   description: "How to install and use Lshoot with Claude Code or manually",
 };
 

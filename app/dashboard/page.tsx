@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  robots: { index: false, follow: false },
+};
 import { listProjects } from "@/lib/project-loader";
 import { ProjectsList } from "@/components/projects-list";
 

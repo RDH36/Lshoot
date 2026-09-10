@@ -40,7 +40,7 @@ The full documentation is available **inside the app** at [http://localhost:3000
 ```
 app/                  Next.js App Router (landing + dashboard + API + preview + /docs)
 components/aso/       Component library for screenshots
-projects/{slug}/      Your projects (gitignored — only example-app is versioned)
+projects/{slug}/      Your projects (gitignored — only example-app and lshoot are versioned)
 lib/                  Formats, Puppeteer, export, schemas
 exports/              PNG output (gitignored)
 .claude/skills/       Claude Code skills (the rest of .claude/ is gitignored)
@@ -50,7 +50,7 @@ scripts/              Internal scripts (landing protection, etc.)
 ## License & protection
 
 You are free to modify, fork, and use every file in this repository for your own projects
-**except the marketing landing** (`app/page.tsx`, `components/landing/`, `public/showcase/`) —
+**except the marketing landing** (`app/page.tsx`, `components/landing/`, `public/showcase/`, `projects/lshoot/`) —
 brand identity of the original author. A Husky pre-commit hook refuses commits touching those
 paths without the developer code (`SCREENSHOOT_DEV_CODE`). The `lshoot` CLI removes the hook
 and the marketing sections in your clone, so this never gets in your way.

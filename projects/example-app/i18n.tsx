@@ -16,7 +16,19 @@ type FloatingCardT = {
   sub: string;
 };
 
+type MockT = {
+  date: string;
+  greeting: string;
+  streak: string;
+  days: string;
+  best: string;
+  today: string;
+  seeAll: string;
+  habits: { emoji: string; name: string; meta: string }[];
+};
+
 export type T = {
+  mock: MockT;
   hero: ScreenT;
   features: ScreenT;
   split: ScreenT;
@@ -24,10 +36,26 @@ export type T = {
   minimalist: ScreenT;
   floating: ScreenT & { cards: FloatingCardT[] };
   dark: ScreenT;
-  cta: ScreenT & { button: string };
+  cta: ScreenT & { button: string; rating: string; stores: [string, string] };
 };
 
 const EN: T = {
+  mock: {
+    date: "Tuesday, March 12",
+    greeting: "Good morning, Alex 👋",
+    streak: "Current streak",
+    days: "days",
+    best: "Best: 21 days",
+    today: "Today",
+    seeAll: "See all",
+    habits: [
+      { emoji: "💧", name: "Drink water", meta: "6 / 8 glasses" },
+      { emoji: "🏃", name: "Morning run", meta: "5 km · 28 min" },
+      { emoji: "📖", name: "Read 20 pages", meta: "Atomic Habits" },
+      { emoji: "🧘", name: "Meditate", meta: "10 min · 7:30" },
+      { emoji: "🌙", name: "Sleep by 11pm", meta: "Tonight" },
+    ],
+  },
   hero: {
     headline: (c) => (
       <>
@@ -113,10 +141,28 @@ const EN: T = {
     ),
     sub: "Free. No credit card.",
     button: "Download now",
+    rating: "4.9 · 12k ratings",
+    stores: ["App Store", "Google Play"],
   },
 };
 
 const FR: T = {
+  mock: {
+    date: "Mardi 12 mars",
+    greeting: "Bonjour Alex 👋",
+    streak: "Série en cours",
+    days: "jours",
+    best: "Record : 21 jours",
+    today: "Aujourd'hui",
+    seeAll: "Tout voir",
+    habits: [
+      { emoji: "💧", name: "Boire de l'eau", meta: "6 / 8 verres" },
+      { emoji: "🏃", name: "Course matinale", meta: "5 km · 28 min" },
+      { emoji: "📖", name: "Lire 20 pages", meta: "Atomic Habits" },
+      { emoji: "🧘", name: "Méditer", meta: "10 min · 7h30" },
+      { emoji: "🌙", name: "Dormir avant 23h", meta: "Ce soir" },
+    ],
+  },
   hero: {
     headline: (c) => (
       <>
@@ -202,6 +248,8 @@ const FR: T = {
     ),
     sub: "Gratuit. Sans carte bancaire.",
     button: "Télécharger",
+    rating: "4,9 · 12k avis",
+    stores: ["App Store", "Google Play"],
   },
 };
 

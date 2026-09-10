@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Terms of Service — Lshoot",
+  title: "Terms of Service",
   description: "Terms of Service for Lshoot, a local-first ASO tool",
 };
 

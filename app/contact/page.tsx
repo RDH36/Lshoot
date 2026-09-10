@@ -1,13 +1,15 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Contact — Lshoot",
-  description: "Reach out to Raymond Dzery Hago",
+  title: "Contact",
+  description: "Reach out to Raymond Dzery Hago — email, website, LinkedIn.",
 };
 
 const LINKEDIN_URL =
   "https://www.linkedin.com/in/raymond-dzery-hago-25013221b/";
 const FACEBOOK_URL = "https://www.facebook.com/rdh36/";
+const SITE_URL = "https://dzeryhago.com";
+const EMAIL = "contact@dzeryhago.com";
 
 export default function ContactPage() {
   return (
@@ -53,6 +55,19 @@ export default function ContactPage() {
 
         <div className="space-y-3">
           <ContactLink
+            href={`mailto:${EMAIL}`}
+            label="Email"
+            username={EMAIL}
+            icon={<MailIcon />}
+            external={false}
+          />
+          <ContactLink
+            href={SITE_URL}
+            label="Website"
+            username="dzeryhago.com"
+            icon={<GlobeIcon />}
+          />
+          <ContactLink
             href={LINKEDIN_URL}
             label="LinkedIn"
             username="Raymond Dzery Hago"
@@ -92,7 +107,7 @@ export default function ContactPage() {
             className="mt-6 text-[13px] italic"
             style={{ color: "#78716c" }}
           >
-            Fastest response via LinkedIn DM.
+            Fastest response by email or LinkedIn DM.
           </p>
         </div>
       </main>
@@ -107,17 +122,19 @@ function ContactLink({
   label,
   username,
   icon,
+  external = true,
 }: {
   href: string;
   label: string;
   username: string;
   icon: React.ReactNode;
+  external?: boolean;
 }) {
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noreferrer noopener"
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer noopener" : undefined}
       className="flex items-center gap-4 rounded-xl border p-5 transition-colors hover:border-[#059669]"
       style={{
         borderColor: "#e7e5e4",
@@ -138,6 +155,24 @@ function ContactLink({
       </div>
       <span style={{ color: "#78716c" }}>↗</span>
     </a>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </svg>
+  );
+}
+
+function GlobeIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1c1917" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+    </svg>
   );
 }
 

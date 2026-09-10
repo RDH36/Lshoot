@@ -1,6 +1,7 @@
-// Template: Dark SaaS — Linear/Superhuman aesthetic with colored glow
-import { AppMockup, SolidBackground, Subheadline } from "@/components/aso";
+// Template: Dark SaaS — Linear/Superhuman aesthetic, grid + colored glow
+import { DeviceFrame, PatternBackground, Subheadline } from "@/components/aso";
 import { ExampleLayout } from "../components/Layout";
+import { HabitMockup } from "../components/HabitMockup";
 import { useT } from "../i18n";
 
 const ACCENT = "#22d3ee";
@@ -10,9 +11,10 @@ export default function Dark({ lang }: { lang?: string }) {
   return (
     <ExampleLayout
       textColor="#ffffff"
-      background={<SolidBackground color="#09090b" />}
+      glow="#06b6d4"
+      background={<PatternBackground pattern="grid" color="#ffffff" bgColor="#09090b" size={72} opacity={0.06} />}
       headline={
-        <h1 className="text-[9.5rem] font-black leading-[0.9] tracking-tight">
+        <h1 className="text-[9.5rem] font-extrabold leading-[0.92] tracking-[-0.03em]">
           {t.dark.headline(ACCENT)}
         </h1>
       }
@@ -22,16 +24,10 @@ export default function Dark({ lang }: { lang?: string }) {
         </Subheadline>
       }
       mockup={
-        <div
-          className="h-full"
-          style={{
-            filter: "drop-shadow(0 30px 60px rgba(34, 211, 238, 0.4))",
-          }}
-        >
-          <AppMockup
-            src="/api/assets/example-app/home.png"
-            device="phone"
-          />
+        <div className="h-full" style={{ filter: "drop-shadow(0 30px 80px rgba(34, 211, 238, 0.35))" }}>
+          <DeviceFrame className="h-full w-auto">
+            <HabitMockup t={t.mock} accent="#06b6d4" dark />
+          </DeviceFrame>
         </div>
       }
     />

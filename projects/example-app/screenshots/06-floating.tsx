@@ -1,9 +1,10 @@
 // Template: Floating UI Callouts — feature cards positioned around the device
-import { AppMockup, GradientBackground } from "@/components/aso";
-import { ExampleLayout } from "../components/Layout";
+import { DeviceFrame, GradientBackground } from "@/components/aso";
+import { ExampleLayout, EXAMPLE_FONT } from "../components/Layout";
+import { HabitMockup } from "../components/HabitMockup";
 import { useT } from "../i18n";
 
-const ACCENT = "#a855f7";
+const ACCENT = "#9333ea";
 
 type CardProps = {
   emoji: string;
@@ -13,26 +14,19 @@ type CardProps = {
   rotate?: number;
 };
 
-function FloatingCard({
-  emoji,
-  label,
-  sub,
-  className = "",
-  rotate = 0,
-}: CardProps) {
+function FloatingCard({ emoji, label, sub, className = "", rotate = 0 }: CardProps) {
   return (
     <div
-      className={`absolute bg-white rounded-[2rem] px-[1.5rem] py-[1rem] shadow-[0_20px_60px_rgba(30,27,75,0.2)] ${className}`}
-      style={{
-        transform: `rotate(${rotate}deg)`,
-        fontFamily: "var(--font-roboto), sans-serif",
-      }}
+      className={`absolute z-20 flex items-center gap-[1.4rem] rounded-[2.2rem] bg-white/90 px-[2rem] py-[1.5rem] shadow-[0_30px_70px_rgba(76,29,149,0.22)] ring-1 ring-white ${className}`}
+      style={{ transform: `rotate(${rotate}deg)`, fontFamily: EXAMPLE_FONT, backdropFilter: "blur(20px)" }}
     >
-      <div className="text-[3rem] leading-none mb-[0.25rem]">{emoji}</div>
-      <div className="text-[1.6rem] font-bold leading-tight text-[#1e1b4b]">
-        {label}
-      </div>
-      <div className="text-[1rem] text-neutral-500 mt-[0.1rem]">{sub}</div>
+      <span className="flex items-center justify-center w-[5rem] h-[5rem] rounded-[1.5rem] bg-[#f3e8ff] text-[2.8rem]">
+        {emoji}
+      </span>
+      <span>
+        <span className="block text-[2rem] font-extrabold leading-tight text-[#1e1b4b]">{label}</span>
+        <span className="block text-[1.4rem] font-medium text-[#6b7280] mt-[0.2rem]">{sub}</span>
+      </span>
     </div>
   );
 }
@@ -42,40 +36,21 @@ export default function Floating({ lang }: { lang?: string }) {
   return (
     <ExampleLayout
       textColor="#1e1b4b"
-      background={
-        <GradientBackground
-          from="#e9d5ff"
-          via="#ddd6fe"
-          to="#fce7f3"
-          direction="to-br"
-        />
-      }
+      glow="#c084fc"
+      background={<GradientBackground from="#ede9fe" via="#e9d5ff" to="#fce7f3" direction="to-br" />}
       headline={
-        <h1 className="text-[9.5rem] font-black leading-[0.9] tracking-tight">
+        <h1 className="text-[9.5rem] font-extrabold leading-[0.92] tracking-[-0.03em]">
           {t.floating.headline(ACCENT)}
         </h1>
       }
       mockup={
         <div className="relative h-full flex items-center">
-          <AppMockup
-            src="/api/assets/example-app/home.png"
-            device="phone"
-          />
-          <FloatingCard
-            {...t.floating.cards[0]}
-            className="top-[8%] -left-[14%]"
-            rotate={-6}
-          />
-          <FloatingCard
-            {...t.floating.cards[1]}
-            className="top-[40%] -right-[14%]"
-            rotate={5}
-          />
-          <FloatingCard
-            {...t.floating.cards[2]}
-            className="bottom-[10%] -left-[12%]"
-            rotate={-3}
-          />
+          <DeviceFrame className="h-full w-auto">
+            <HabitMockup t={t.mock} accent="#9333ea" />
+          </DeviceFrame>
+          <FloatingCard {...t.floating.cards[0]} className="top-[10%] -left-[18%]" rotate={-6} />
+          <FloatingCard {...t.floating.cards[1]} className="top-[42%] -right-[20%]" rotate={5} />
+          <FloatingCard {...t.floating.cards[2]} className="bottom-[10%] -left-[16%]" rotate={-3} />
         </div>
       }
     />

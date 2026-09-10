@@ -77,7 +77,7 @@ function RenderDemo() {
       >
         <Image
           src={HERO_RENDER.src}
-          alt="Rendered App Store screenshot"
+          alt="Lshoot App Store screenshot rendered from JSX"
           width={HERO_RENDER.width}
           height={HERO_RENDER.height}
           priority
@@ -112,19 +112,19 @@ function CodeCard() {
         <span className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
         <span className="ml-3 text-[11px]" style={{ color: "#8B8F98", fontFamily: FONT.mono }}>
-          screenshots/01-clear.tsx
+          projects/lshoot/screenshots/01-jsx.tsx
         </span>
       </div>
       <pre
         className="px-4 py-4 text-[11px] sm:text-[12px] leading-[1.7] overflow-hidden"
         style={{ color: "#D6DEEB", fontFamily: FONT.mono }}
       >
-        <span style={cm}>{"// Taxico-style value prop"}</span>{"\n"}
-        <span style={k}>export default function</span> Clear() {"{"}{"\n"}
+        <span style={cm}>{"// Lshoot's own App Store screenshot"}</span>{"\n"}
+        <span style={k}>export default function</span> Jsx() {"{"}{"\n"}
         {"  "}<span style={k}>return</span> ({"\n"}
-        {"    "}<span style={tag}>{"<ClearwayLayout"}</span>{"\n"}
-        {"      "}<span style={attr}>src</span>=<span style={str}>{'"/api/assets/clearway/home.png"'}</span>{"\n"}
-        {"      "}<span style={attr}>headline</span>=<span style={str}>{'"Quit vaping, breath by breath"'}</span>{"\n"}
+        {"    "}<span style={tag}>{"<LshootLayout"}</span>{"\n"}
+        {"      "}<span style={attr}>headline</span>=<span style={str}>{'"Screenshots, written in JSX"'}</span>{"\n"}
+        {"      "}<span style={attr}>screen</span>={"{"}<span style={tag}>{"<EditorMockup />"}</span>{"}"}{"\n"}
         {"    "}<span style={tag}>{"/>"}</span>{"\n"}
         {"  "});{"\n"}
         {"}"}

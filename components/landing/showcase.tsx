@@ -14,15 +14,15 @@ export function Showcase() {
             className="mt-3 text-[2rem] sm:text-[2.6rem] font-extrabold leading-[1.02] tracking-[-0.02em]"
             style={{ fontFamily: FONT.display, color: "#F6F4EE" }}
           >
-            Four apps. Every format.
+            Five apps. Every format.
             <br />
             Rendered by code, not by hand.
           </h2>
         </div>
         <p className="max-w-[22rem] text-[14px] leading-relaxed" style={{ color: "#9A9EA8" }}>
-          Straight out of <span style={{ fontFamily: FONT.mono, color: "#D6DEEB" }}>exports/</span>.
-          Chromium at 2× DPR, downsampled with Lanczos3 by Sharp. A game, a habit
-          tracker, a finance app, a wellness app — same pipeline.
+          Straight out of <span style={{ fontFamily: FONT.mono, color: "#D6DEEB" }}>exports/</span>,
+          iPhone 6.9″ format. Chromium at 2× DPR, downsampled with Lanczos3 by Sharp.
+          Two games, a finance app, a wellness app, and Lshoot itself — same pipeline.
         </p>
       </div>
 

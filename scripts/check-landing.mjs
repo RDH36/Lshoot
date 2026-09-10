@@ -8,7 +8,7 @@ import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "
 import { join } from "node:path";
 import { execSync } from "node:child_process";
 
-const PROTECTED_PATHS = ["app/page.tsx", "components/landing", "public/showcase"];
+const PROTECTED_PATHS = ["app/page.tsx", "components/landing", "public/showcase", "projects/lshoot"];
 const LOCK_PATH = ".landing-lock";
 const ENV_VAR = "SCREENSHOOT_DEV_CODE";
 const DEV_CODE_HASH =

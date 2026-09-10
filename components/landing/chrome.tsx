@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BRAND, FONT, GITHUB_URL, T } from "./theme";
+import { AUTHOR, BRAND, FONT, GITHUB_URL, T } from "./theme";
 
 export type NavLink = { href: string; label: string };
 
@@ -101,13 +101,27 @@ export function Footer({ tagline = "local-first ASO screenshots" }: { tagline?: 
         className="mx-auto max-w-6xl px-6 py-10 flex flex-wrap items-center justify-between gap-5 text-[13px]"
         style={{ color: T.muted }}
       >
-        <div className="flex items-center gap-2.5">
-          <Logo size={20} />
+        <div className="flex flex-col gap-1.5">
+          <div className="flex items-center gap-2.5">
+            <Logo size={20} />
+            <span>
+              <span className="font-semibold" style={{ color: T.ink }}>
+                {BRAND}
+              </span>{" "}
+              · {tagline}
+            </span>
+          </div>
           <span>
-            <span className="font-semibold" style={{ color: T.ink }}>
-              {BRAND}
-            </span>{" "}
-            · {tagline}
+            by{" "}
+            <a
+              href={AUTHOR.url}
+              target="_blank"
+              rel="noreferrer noopener author"
+              className="font-medium underline-offset-4 hover:underline"
+              style={{ color: T.ink }}
+            >
+              {AUTHOR.name}
+            </a>
           </span>
         </div>
         <div className="flex items-center gap-5 flex-wrap">

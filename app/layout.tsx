@@ -11,6 +11,7 @@ import {
   Hanken_Grotesk,
 } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { AUTHOR, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -68,8 +69,48 @@ const hanken = Hanken_Grotesk({
 
 
 export const metadata: Metadata = {
-  title: "Lshoot — ASO screenshots by code",
-  description: "Ship App Store and Play Store screenshots at the speed of code.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: `%s — ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: AUTHOR.name, url: AUTHOR.url }],
+  creator: AUTHOR.name,
+  publisher: AUTHOR.name,
+  keywords: [
+    "app store screenshots",
+    "play store screenshots",
+    "ASO screenshots",
+    "screenshot generator",
+    "app store screenshot maker",
+    "react screenshots",
+    "next.js",
+    "puppeteer",
+    "open source",
+    "local-first",
+  ],
+  category: "technology",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
 };
 
 export default function RootLayout({
@@ -79,7 +120,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="fr"
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} ${nunito.variable} ${roboto.variable} ${plusJakarta.variable} ${inter.variable} ${bricolage.variable} ${hanken.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">

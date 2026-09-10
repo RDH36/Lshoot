@@ -53,6 +53,9 @@ next-env.d.ts
 /projects/example-app/assets/*
 !/projects/example-app/assets/.gitkeep
 !/projects/example-app/assets/home.png
+!/projects/lshoot/
+/projects/lshoot/assets/*
+!/projects/lshoot/assets/.gitkeep
 
 # Claude Code local state — only the shipped skills are versioned
 /.claude/*
