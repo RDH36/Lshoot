@@ -55,8 +55,8 @@ export default function Hero() {
 
 ## Composants ASO disponibles (depuis `@/components/aso`)
 
-- `<DeviceFrame variant="iphone-15-pro|iphone-15|ipad-13|android-phone">`
-- `<AppMockup src="/api/assets/{slug}/home.png" device="iphone-15-pro" fit="cover|contain" />`
+- `<DeviceFrame variant="phone|iphone-15-pro|iphone-15|ipad-13|android-phone">` — `phone` (défaut) = carte arrondie sans encoche, bezel fin (style Clearway)
+- `<AppMockup src="/api/assets/{slug}/home.png" device?="phone" fit="cover|contain" />` — `device` optionnel, défaut `phone`
 - `<Headline size="xl|2xl|3xl|4xl|5xl|6xl" align="center" color="#000">…</Headline>`
 - `<Subheadline size="sm|md|lg|xl" align="center" color="#000">…</Subheadline>`
 - `<GradientBackground from="#FF6B6B" to="#4ECDC4" via?="#123456" direction="to-b|to-t|to-br|to-bl|to-r|to-l" />`

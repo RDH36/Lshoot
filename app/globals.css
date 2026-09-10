@@ -132,3 +132,38 @@ html {
     @apply font-sans;
   }
 }
+/* Landing motion */
+@keyframes lshoot-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lshoot-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.lshoot-rise {
+  animation: lshoot-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lshoot-marquee {
+  animation: lshoot-marquee 55s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lshoot-rise,
+  .lshoot-marquee {
+    animation: none;
+  }
+}

@@ -25,8 +25,10 @@ pnpm dev            # http://localhost:3000
 1. **Clones** `https://github.com/RDH36/Lshoot.git` into the directory you name
 2. **Wipes** the original git history (so you start fresh)
 3. **Replaces** `app/page.tsx` with a project-dashboard landing (lists your projects, links to `/dashboard` and `/docs`) — not the public marketing page
-4. **Removes** the landing-protection files (`.landing-lock`, `scripts/check-landing.mjs`, `.husky/pre-commit`, `prepare` script) since you own this fork now
+4. **Removes** the marketing-only files (`components/landing/{hero,showcase,workflow,features,cta}.tsx`, `public/showcase/`) and the landing-protection files (`.landing-lock`, `scripts/check-landing.mjs`, `.husky/pre-commit`, `prepare` script) since you own this fork now
 5. **Installs** dependencies with `pnpm` if you confirm
+
+Your clone ships with the `example-app` reference project (8 templates + a demo capture) and the `new-aso-project` Claude Code skill. Any project you add under `projects/` stays out of git by default (see `.gitignore`).
 
 ## Requirements
 

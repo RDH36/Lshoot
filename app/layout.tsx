@@ -7,6 +7,8 @@ import {
   Roboto,
   Plus_Jakarta_Sans,
   Inter,
+  Bricolage_Grotesque,
+  Hanken_Grotesk,
 } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -52,6 +54,18 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+});
+
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 
 export const metadata: Metadata = {
   title: "Lshoot — ASO screenshots by code",
@@ -66,7 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} ${nunito.variable} ${roboto.variable} ${plusJakarta.variable} ${inter.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} ${nunito.variable} ${roboto.variable} ${plusJakarta.variable} ${inter.variable} ${bricolage.variable} ${hanken.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}

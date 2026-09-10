@@ -24,7 +24,7 @@ export default function Minimalist({ lang }: { lang?: string }) {
       mockup={
         <AppMockup
           src="/api/assets/example-app/home.png"
-          device="iphone-15-pro"
+          device="phone"
         />
       }
     />

@@ -1,6 +1,6 @@
 {
   "name": "Example App",
   "bundleId": "com.example.myapp",
-  "defaultDeviceFrame": "iphone-15-pro",
+  "defaultDeviceFrame": "phone",
   "languages": ["en", "fr"]
 }

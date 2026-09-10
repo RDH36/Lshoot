@@ -1,12 +1,14 @@
 #!/usr/bin/env node
-// Landing page protection : refuse les commits qui modifient app/page.tsx
-// sans code développeur. Voir LICENSE section dans le README.
+// Landing page protection: refuse commits that modify the marketing landing
+// (app/page.tsx, components/landing/, public/showcase/) without the developer
+// code. See the "License & protection" section in the README.
 
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import { execSync } from "node:child_process";
 
-const LANDING_PATH = "app/page.tsx";
+const PROTECTED_PATHS = ["app/page.tsx", "components/landing", "public/showcase"];
 const LOCK_PATH = ".landing-lock";
 const ENV_VAR = "SCREENSHOOT_DEV_CODE";
 const DEV_CODE_HASH =
@@ -17,24 +19,38 @@ function sha256(text) {
   return createHash("sha256").update(text).digest("hex");
 }
 
-function fileHash(path) {
-  return sha256(readFileSync(path));
+function listFiles(path) {
+  if (!existsSync(path)) return [];
+  if (statSync(path).isFile()) return [path];
+  return readdirSync(path)
+    .sort()
+    .flatMap((name) => listFiles(join(path, name)));
 }
 
-function isStaged(path) {
+function protectedHash() {
+  const hash = createHash("sha256");
+  for (const file of PROTECTED_PATHS.flatMap(listFiles)) {
+    hash.update(file + "\0");
+    hash.update(readFileSync(file));
+    hash.update("\0");
+  }
+  return hash.digest("hex");
+}
+
+function stagedProtectedFiles() {
   try {
     const out = execSync("git diff --cached --name-only", { encoding: "utf8" });
     return out
       .split("\n")
       .map((s) => s.trim())
-      .includes(path);
+      .filter((f) => PROTECTED_PATHS.some((p) => f === p || f.startsWith(p + "/")));
   } catch {
-    return false;
+    return [];
   }
 }
 
 function main() {
-  if (!isStaged(LANDING_PATH)) {
+  if (stagedProtectedFiles().length === 0) {
     process.exit(0);
   }
 
@@ -45,7 +61,7 @@ function main() {
     process.exit(1);
   }
 
-  const currentHash = fileHash(LANDING_PATH);
+  const currentHash = protectedHash();
   const lockedHash = readFileSync(LOCK_PATH, "utf8").trim();
 
   if (currentHash === lockedHash) {
@@ -54,11 +70,10 @@ function main() {
 
   const code = process.env[ENV_VAR] ?? "";
   if (sha256(code) === DEV_CODE_HASH) {
-    // Auto-update the lock so subsequent commits work without re-entering the code
     writeFileSync(LOCK_PATH, currentHash + "\n");
     execSync(`git add ${LOCK_PATH}`);
     console.log(
-      `✓ Landing page updated by developer. ${LOCK_PATH} refreshed and staged.`,
+      `✓ Landing updated by developer. ${LOCK_PATH} refreshed and staged.`,
     );
     process.exit(0);
   }
@@ -68,17 +83,18 @@ function main() {
   Landing page protection
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ${LANDING_PATH} has been modified.
+  The marketing landing has been modified:
+    ${PROTECTED_PATHS.join("\n    ")}
 
-  This file is protected. To commit changes, set the developer
+  These paths are protected. To commit changes, set the developer
   code as an environment variable:
 
     ${ENV_VAR}=<code> git commit -m "..."
 
-  Without the code, please revert your changes to ${LANDING_PATH}:
+  Without the code, please revert your changes:
 
-    git restore --staged ${LANDING_PATH}
-    git checkout -- ${LANDING_PATH}
+    git restore --staged ${PROTECTED_PATHS.join(" ")}
+    git checkout -- ${PROTECTED_PATHS.join(" ")}
 
   You are free to modify any OTHER file in this repo.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -87,7 +103,7 @@ function main() {
 }
 
 if (process.argv.includes("--update")) {
-  const newHash = fileHash(LANDING_PATH);
+  const newHash = protectedHash();
   writeFileSync(LOCK_PATH, newHash + "\n");
   console.log(`✓ ${LOCK_PATH} updated (${newHash.slice(0, 12)}…)`);
   process.exit(0);

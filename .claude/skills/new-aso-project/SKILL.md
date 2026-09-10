@@ -44,7 +44,7 @@ Les briefs sont souvent dans `/aso-project/{slug}/` (gitignored). Fichiers typiq
 **Normaliser** :
 - `slug` = kebab-case du nom (ex : "Focus Timer" → `focus-timer`)
 - `bundleId` doit matcher `^[a-zA-Z0-9._-]+$` (validé par Zod dans `lib/schemas.ts`)
-- `defaultDeviceFrame` par défaut : `iphone-15-pro`
+- `defaultDeviceFrame` par défaut : `phone` (carte arrondie sans encoche, style Clearway)
 - `languages` validé par regex `^[a-z]{2}(-[A-Z]{2})?$` (ex : `fr`, `en`, `pt-BR`)
 
 ### Étape 2 — Scaffold le projet
@@ -58,7 +58,7 @@ Créer `projects/{slug}/config.json` :
 {
   "name": "{name}",
   "bundleId": "{bundleId}",
-  "defaultDeviceFrame": "iphone-15-pro",
+  "defaultDeviceFrame": "phone",
   "languages": ["fr", "en"]
 }
 ```
@@ -100,7 +100,7 @@ Deux approches selon le besoin :
 
 **A. PNG placeholder via assets** (simple, rapide)
 - L'utilisateur uploade des captures Xcode/emulator dans `/projects/{slug}/assets/`
-- Les screenshots utilisent `<AppMockup src="/api/assets/{slug}/home.png" device="iphone-15-pro" />`
+- Les screenshots utilisent `<AppMockup src="/api/assets/{slug}/home.png" device="phone" />`
 - Avantage : zéro code à écrire
 - Inconvénient : pas localisable, captures datent vite
 
@@ -288,7 +288,7 @@ export default function Features({ lang }: { lang?: string }) {
         </h1>
       }
       subheadline={<Subheadline size="lg" color="#dbeafe">{t.features.sub}</Subheadline>}
-      mockup={<AppMockup src="/api/assets/{slug}/home.png" device="iphone-15-pro" />}
+      mockup={<AppMockup src="/api/assets/{slug}/home.png" device="phone" />}
     />
   );
 }

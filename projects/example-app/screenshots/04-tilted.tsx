@@ -42,7 +42,7 @@ export default function Tilted({ lang }: { lang?: string }) {
           >
             <AppMockup
               src="/api/assets/example-app/home.png"
-              device="iphone-15-pro"
+              device="phone"
             />
           </div>
         </div>

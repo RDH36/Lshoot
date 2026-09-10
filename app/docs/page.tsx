@@ -149,7 +149,9 @@ pnpm dev`}</code></pre>
                 <code>/docs</code>) — not the public marketing page.
               </li>
               <li>
-                Removes the landing-protection files (<code>.landing-lock</code>,{" "}
+                Removes the marketing-only sections (<code>components/landing/</code>{" "}
+                hero, showcase, workflow, features, CTA and <code>public/showcase/</code>)
+                and the landing-protection files (<code>.landing-lock</code>,{" "}
                 <code>scripts/check-landing.mjs</code>,{" "}
                 <code>.husky/pre-commit</code>, the <code>prepare</code> script)
                 since you own this fork now.
@@ -259,8 +261,9 @@ pnpm start`}</code></pre>
           <Section id="first-run" title="First run">
             <p>
               After <code>pnpm dev</code>, the dashboard lists projects found in{" "}
-              <code>projects/</code>. A demo project (<code>example-app</code>) and a
-              full reference project (<code>flipia</code>) are provided.
+              <code>projects/</code>. A demo project (<code>example-app</code>, 8
+              reference templates + a sample capture) is provided. Your own projects
+              are gitignored by default.
             </p>
 
             <h3>Open the dashboard</h3>
@@ -357,7 +360,7 @@ pnpm start`}</code></pre>
             <pre><code>{`{
   "name": "My App",
   "bundleId": "com.company.myapp",
-  "defaultDeviceFrame": "iphone-15-pro",
+  "defaultDeviceFrame": "phone",
   "languages": ["en", "fr"]
 }`}</code></pre>
 
@@ -373,7 +376,7 @@ pnpm start`}</code></pre>
               <tbody>
                 <tr><td><code>name</code></td><td>Yes</td><td>Commercial name shown in the dashboard</td></tr>
                 <tr><td><code>bundleId</code></td><td>Yes</td><td>Reverse-DNS (<code>[a-zA-Z0-9._-]+</code>)</td></tr>
-                <tr><td><code>defaultDeviceFrame</code></td><td>No</td><td><code>iphone-15-pro</code> / <code>iphone-15</code> / <code>ipad-13</code> / <code>android-phone</code></td></tr>
+                <tr><td><code>defaultDeviceFrame</code></td><td>No</td><td><code>phone</code> (default, rounded card) / <code>iphone-15-pro</code> / <code>iphone-15</code> / <code>ipad-13</code> / <code>android-phone</code></td></tr>
                 <tr><td><code>languages</code></td><td>No</td><td>Array of codes (e.g. <code>["en", "fr"]</code>). Enables switcher + multi-lang export</td></tr>
                 <tr><td><code>protected</code></td><td>No</td><td>When <code>true</code>, export requires a developer code. Used for private/reference projects.</td></tr>
                 <tr><td><code>appStoreId</code></td><td>No</td><td>Reference only</td></tr>
@@ -430,7 +433,7 @@ export default function Hero() {
             <table>
               <thead><tr><th>Component</th><th>Main props</th></tr></thead>
               <tbody>
-                <tr><td><code>DeviceFrame</code></td><td><code>variant</code> (iphone-15-pro, iphone-15, ipad-13, android-phone)</td></tr>
+                <tr><td><code>DeviceFrame</code></td><td><code>variant</code> (phone — default, iphone-15-pro, iphone-15, ipad-13, android-phone)</td></tr>
                 <tr><td><code>AppMockup</code></td><td><code>src</code>, <code>device</code>, <code>fit</code> (cover/contain)</td></tr>
                 <tr><td><code>Headline</code></td><td><code>size</code> (xl → 6xl), <code>color</code>, <code>align</code></td></tr>
                 <tr><td><code>Subheadline</code></td><td><code>size</code> (sm → xl), <code>color</code>, <code>align</code></td></tr>
@@ -463,7 +466,7 @@ export default function Hero() {
               </li>
             </ul>
             <p>Reference in a screenshot via the API route:</p>
-            <pre><code>{`<AppMockup src="/api/assets/my-app/home.png" device="iphone-15-pro" />`}</code></pre>
+            <pre><code>{`<AppMockup src="/api/assets/my-app/home.png" device="phone" />`}</code></pre>
             <blockquote>
               Never reference <code>/projects/...</code> directly — the{" "}
               <code>/api/assets/...</code> route is secured against path traversal.
@@ -560,7 +563,8 @@ const fredoka = Fredoka({
               <li>Frequent iteration on the look</li>
             </ul>
             <p>
-              See <code>projects/flipia/components/GameMockup.tsx</code> as a reference.
+              Put the mockup in <code>projects/{"{slug}"}/components/</code> and wrap it
+              in a <code>DeviceFrame</code>.
             </p>
           </Section>
 
@@ -621,7 +625,7 @@ const fredoka = Fredoka({
             </p>
             <pre><code>{`curl -X POST http://localhost:3000/api/export \\
   -H "Content-Type: application/json" \\
-  -d '{"project":"flipia","devCode":"<code>"}'`}</code></pre>
+  -d '{"project":"my-app","devCode":"<code>"}'`}</code></pre>
           </Section>
 
           <Section id="troubleshooting" title="Troubleshooting">

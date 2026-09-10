@@ -145,7 +145,7 @@ La palette vient du brief (`brandColors`) ou de l'app source (`tailwind.config.j
 
 ## Adapter le device frame
 
-Si l'app est mobile-only → toujours `iphone-15-pro`.
+Si l'app est mobile-only → `phone` (défaut : carte arrondie, sans encoche). `iphone-15-pro` uniquement si le brief veut explicitement un look iPhone (Dynamic Island).
 Si l'app est tablet-first → `ipad-13` dans au moins 1 screenshot.
 Si l'app est Android-only → remplacer par `android-phone` (le bouton "Export all" couvre Apple + Google anyway).
 

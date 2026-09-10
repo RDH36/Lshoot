@@ -34,7 +34,7 @@ Les briefs vivent typiquement dans `/aso-project/{slug}/` (gitignored), avec deu
 | `appStoreId` | `1234567890` | |
 | `playStoreId` | `com.bubble-go.focustimer` | |
 | `darkMode` | `true` | Utiliser palette sombre sur certains screens |
-| `defaultDeviceFrame` | `iphone-15-pro` \| `iphone-15` \| `android-phone` | |
+| `defaultDeviceFrame` | `phone` (défaut) \| `iphone-15-pro` \| `iphone-15` \| `android-phone` | |
 | `sourceCodePath` | `/home/raymond/.../my-app` | **Critique** : si fourni, lis `tailwind.config.js` / `app.json` / un component home pour extraire la vraie charte (fonts, couleurs, patterns d'UI) |
 | `customFonts` | `{ display: "Fredoka", body: "Nunito" }` | Polices Google Fonts à ajouter via `next/font/google` dans `app/layout.tsx` |
 | `mockupStrategy` | `png` \| `html` | `html` = écrire un React mockup dans `projects/{slug}/components/` ; `png` = placeholders assets classiques |

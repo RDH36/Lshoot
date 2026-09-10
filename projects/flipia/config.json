@@ -1,7 +1,0 @@
-{
-  "name": "Flipia",
-  "bundleId": "com.rdh36.flipia",
-  "defaultDeviceFrame": "iphone-15-pro",
-  "languages": ["fr", "en"],
-  "protected": true
-}

@@ -10,7 +10,7 @@ format in a single command.
 personal dashboard, and offers to install dependencies:
 
 ```bash
-npx github:RDH36/Lshoot my-app
+npx lshoot my-app
 cd my-app
 pnpm dev
 ```
@@ -40,26 +40,23 @@ The full documentation is available **inside the app** at [http://localhost:3000
 ```
 app/                  Next.js App Router (landing + dashboard + API + preview + /docs)
 components/aso/       Component library for screenshots
-projects/{slug}/      User projects (config + screenshots + assets)
+projects/{slug}/      Your projects (gitignored — only example-app is versioned)
 lib/                  Formats, Puppeteer, export, schemas
 exports/              PNG output (gitignored)
-.claude/skills/       Claude Code skills
+.claude/skills/       Claude Code skills (the rest of .claude/ is gitignored)
 scripts/              Internal scripts (landing protection, etc.)
 ```
 
 ## License & protection
 
 You are free to modify, fork, and use every file in this repository for your own projects
-**except**:
+**except the marketing landing** (`app/page.tsx`, `components/landing/`, `public/showcase/`) —
+brand identity of the original author. A Husky pre-commit hook refuses commits touching those
+paths without the developer code (`SCREENSHOOT_DEV_CODE`). The `lshoot` CLI removes the hook
+and the marketing sections in your clone, so this never gets in your way.
 
-1. **The landing page** (`app/page.tsx`) — brand identity of the original author. Protected by a git pre-commit hook via Husky.
-2. **The `flipia` project** (`projects/flipia/`) — personal project of the original author. Export is locked; running it through the Export API or UI requires a developer code.
-
-To modify either, pass the developer code via env var or prompt. Without the code:
-- Commits touching `app/page.tsx` are refused.
-- Exports of the `flipia` project are refused with HTTP 403.
-
-Every other file is yours: screenshots in `projects/{your-app}/`, components, lib, docs, config — change anything.
+Your own projects live in `projects/{slug}/` and are **gitignored by default** (only
+`example-app` is versioned). Everything else — components, lib, docs, config — is yours.
 
 ## Commands
 
@@ -67,7 +64,7 @@ Every other file is yours: screenshots in `projects/{your-app}/`, components, li
 |---------|--------|
 | `pnpm dev` | Local server with Turbopack |
 | `pnpm build` | Production build |
-| `pnpm cli <dir>` | Set up a fresh Lshoot instance in `<dir>` (clone + customize) |
+| `pnpm cli <dir>` | Set up a fresh Lshoot instance in `<dir>` (same as `npx lshoot <dir>`) |
 | `node scripts/check-landing.mjs` | Manually verify the landing is unchanged |
 
 ## Project docs (development)

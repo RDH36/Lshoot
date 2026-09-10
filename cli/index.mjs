@@ -14,7 +14,8 @@ Usage:
   lshoot --version            Show the CLI version
 
 Examples:
-  npx github:RDH36/Lshoot my-app
+  npx lshoot my-app
+  pnpm dlx lshoot my-app
   node cli/index.mjs my-app
 `;
 

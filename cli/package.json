@@ -1,7 +1,7 @@
 {
   "name": "lshoot",
-  "version": "0.2.1",
-  "description": "Set up your own Lshoot instance — clones the repo, replaces the marketing landing with a personal dashboard, optionally installs deps.",
+  "version": "0.3.0",
+  "description": "Set up your own Lshoot instance — clones the repo, replaces the marketing landing with a personal project dashboard, optionally installs deps.",
   "type": "module",
   "bin": {
     "lshoot": "index.mjs"

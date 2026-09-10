@@ -59,7 +59,7 @@ export default function Floating({ lang }: { lang?: string }) {
         <div className="relative h-full flex items-center">
           <AppMockup
             src="/api/assets/example-app/home.png"
-            device="iphone-15-pro"
+            device="phone"
           />
           <FloatingCard
             {...t.floating.cards[0]}

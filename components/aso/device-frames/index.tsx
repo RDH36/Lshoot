@@ -1,32 +1,37 @@
 import type { ComponentProps, ReactNode } from "react";
+import { Phone } from "./phone";
 import { IPhone15Pro } from "./iphone-15-pro";
 import { IPhone15 } from "./iphone-15";
 import { IPad13 } from "./ipad-13";
 import { AndroidPhone } from "./android-phone";
 
-export { IPhone15Pro, IPhone15, IPad13, AndroidPhone };
+export { Phone, IPhone15Pro, IPhone15, IPad13, AndroidPhone };
 
 export type DeviceVariant =
+  | "phone"
   | "iphone-15-pro"
   | "iphone-15"
   | "ipad-13"
   | "android-phone";
 
+export const DEFAULT_DEVICE: DeviceVariant = "phone";
+
 const FRAMES = {
+  phone: Phone,
   "iphone-15-pro": IPhone15Pro,
   "iphone-15": IPhone15,
   "ipad-13": IPad13,
   "android-phone": AndroidPhone,
 } as const;
 
-type BaseProps = ComponentProps<typeof IPhone15Pro>;
+type BaseProps = ComponentProps<typeof Phone>;
 
 export function DeviceFrame({
-  variant,
+  variant = DEFAULT_DEVICE,
   children,
   className,
   screenClassName,
-}: BaseProps & { variant: DeviceVariant; children?: ReactNode }) {
+}: BaseProps & { variant?: DeviceVariant; children?: ReactNode }) {
   const Component = FRAMES[variant];
   return (
     <Component className={className} screenClassName={screenClassName}>

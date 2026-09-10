@@ -42,9 +42,18 @@ next-env.d.ts
 
 # screenshoot-app specific
 /exports/
-/projects/*/assets/*
-!/projects/*/assets/.gitkeep
 /scripts/test-*.ts
 /aso-project
 /private
 /specs
+
+# user projects stay local — only the reference example-app is versioned
+/projects/*
+!/projects/example-app/
+/projects/example-app/assets/*
+!/projects/example-app/assets/.gitkeep
+!/projects/example-app/assets/home.png
+
+# Claude Code local state — only the shipped skills are versioned
+/.claude/*
+!/.claude/skills/

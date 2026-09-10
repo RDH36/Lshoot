@@ -31,7 +31,7 @@ export default function Features({ lang }: { lang?: string }) {
       mockup={
         <AppMockup
           src="/api/assets/example-app/home.png"
-          device="iphone-15-pro"
+          device="phone"
         />
       }
     />

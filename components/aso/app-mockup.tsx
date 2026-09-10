@@ -1,12 +1,13 @@
 import Image from "next/image";
 import {
+  DEFAULT_DEVICE,
   DeviceFrame,
   type DeviceVariant,
 } from "@/components/aso/device-frames";
 
 type Props = {
   src: string;
-  device: DeviceVariant;
+  device?: DeviceVariant;
   alt?: string;
   className?: string;
   screenClassName?: string;
@@ -15,7 +16,7 @@ type Props = {
 
 export function AppMockup({
   src,
-  device,
+  device = DEFAULT_DEVICE,
   alt = "",
   className = "",
   screenClassName = "",

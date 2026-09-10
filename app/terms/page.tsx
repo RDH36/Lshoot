@@ -60,17 +60,14 @@ export default function TermsPage() {
         </p>
 
         <h2>3. License and Protected Areas</h2>
-        <p>You are free to modify, fork, and use every file in this repository for your own projects, with two exceptions:</p>
+        <p>You are free to modify, fork, and use every file in this repository for your own projects, with one exception:</p>
         <ul>
           <li>
-            <strong>The landing page</strong> (<code>app/page.tsx</code>) carries the
+            <strong>The marketing landing</strong> (<code>app/page.tsx</code>,{" "}
+            <code>components/landing/</code>, <code>public/showcase/</code>) carries the
             brand identity of the original author (Raymond Dzery Hago) and must not be
-            modified without permission. A git pre-commit hook enforces this rule.
-          </li>
-          <li>
-            <strong>The <code>flipia</code> project</strong> (<code>projects/flipia/</code>) is the
-            personal work of the original author. Exporting this project requires a
-            developer code.
+            modified without permission. A git pre-commit hook enforces this rule. The{" "}
+            <code>lshoot</code> CLI replaces it with a personal dashboard in your clone.
           </li>
         </ul>
         <p>

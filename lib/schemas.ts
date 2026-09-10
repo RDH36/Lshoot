@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const DeviceFrameVariant = z.enum([
+  "phone",
   "iphone-15-pro",
   "iphone-15",
   "ipad-13",
