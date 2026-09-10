@@ -125,6 +125,18 @@ Résumé des patterns disponibles :
 - **App avec identité typo forte** → polices custom dans `app/layout.tsx`
 - **App avec code source accessible** → lire `tailwind.config` pour extraire palette exacte
 
+## Piège Tailwind v4 (à ne jamais casser)
+
+Tailwind v4 ignore les fichiers listés dans `.gitignore` (et `.git/info/exclude`) quand il
+scanne les classes. Si `projects/` y était ajouté, toutes les classes arbitraires
+(`text-[7rem]`, `pt-[6%]`, `rounded-[8rem]`…) utilisées uniquement par les screenshots ne
+seraient plus générées : les titres tombent à 16px sans aucune erreur. Donc :
+
+- Ne jamais gitignorer `projects/` ni un projet précis — un projet privé reste simplement
+  **non suivi** (`git status` le montre en `??`).
+- Corollaire : **jamais de `git add -A`** dans ce repo, toujours des chemins explicites.
+- Si un rendu paraît mal stylé, vider `.next/` : Turbopack sert longtemps un CSS périmé.
+
 ## Règles générales
 
 - TypeScript strict : pas de `any`, pas de `// @ts-ignore`

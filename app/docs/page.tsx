@@ -632,6 +632,16 @@ const fredoka = Fredoka({
             <h3>Puppeteer doesn't download Chromium</h3>
             <pre><code>pnpm rebuild puppeteer</code></pre>
 
+            <h3>Headlines render tiny (16px) in a preview</h3>
+            <p>
+              Tailwind v4 skips files ignored by git when it scans for classes, so a
+              screenshot living in a gitignored folder loses every arbitrary utility
+              (<code>text-[7rem]</code>, <code>pt-[6%]</code>…) without any error. Keep{" "}
+              <code>projects/</code> out of <code>.gitignore</code> — an untracked folder
+              works fine and stays out of your commits. If it still looks wrong, delete{" "}
+              <code>.next/</code>: Turbopack keeps serving a stale stylesheet.
+            </p>
+
             <h3>Port 3000 busy</h3>
             <pre><code>pkill -f "next-server"</code></pre>
 

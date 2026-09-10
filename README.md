@@ -40,7 +40,7 @@ The full documentation is available **inside the app** at [http://localhost:3000
 ```
 app/                  Next.js App Router (landing + dashboard + API + preview + /docs)
 components/aso/       Component library for screenshots
-projects/{slug}/      Your projects (gitignored — only example-app and lshoot are versioned)
+projects/{slug}/      Your projects (app captures gitignored, code scanned by Tailwind)
 lib/                  Formats, Puppeteer, export, schemas
 exports/              PNG output (gitignored)
 .claude/skills/       Claude Code skills (the rest of .claude/ is gitignored)
@@ -55,8 +55,12 @@ brand identity of the original author. A Husky pre-commit hook refuses commits t
 paths without the developer code (`SCREENSHOOT_DEV_CODE`). The `lshoot` CLI removes the hook
 and the marketing sections in your clone, so this never gets in your way.
 
-Your own projects live in `projects/{slug}/` and are **gitignored by default** (only
-`example-app` is versioned). Everything else — components, lib, docs, config — is yours.
+Your own projects live in `projects/{slug}/`. Only the raw app captures
+(`projects/*/assets/`) are gitignored — **the code must stay visible to git**, because
+Tailwind v4 skips gitignored files when it scans for classes, and a screenshot whose
+folder is ignored silently renders every headline at 16px. Keep a project private by
+leaving it untracked instead of adding it to `.gitignore`. Everything else — components,
+lib, docs, config — is yours.
 
 ## Commands
 

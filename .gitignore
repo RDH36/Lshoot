@@ -47,15 +47,14 @@ next-env.d.ts
 /private
 /specs
 
-# user projects stay local — only the reference example-app is versioned
-/projects/*
-!/projects/example-app/
-/projects/example-app/assets/*
-!/projects/example-app/assets/.gitkeep
+# projects/ must NOT be gitignored: Tailwind v4 skips gitignored files during
+# source detection, so ignoring it silently drops every utility class used only
+# by a screenshot (headlines render at 16px). Personal projects simply stay
+# untracked — never `git add -A` in this repo, stage explicit paths.
+# Only the raw app captures are ignored.
+/projects/*/assets/*
+!/projects/*/assets/.gitkeep
 !/projects/example-app/assets/home.png
-!/projects/lshoot/
-/projects/lshoot/assets/*
-!/projects/lshoot/assets/.gitkeep
 
 # Claude Code local state — only the shipped skills are versioned
 /.claude/*
