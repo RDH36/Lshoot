@@ -86,10 +86,10 @@ function RenderDemo() {
         />
       </div>
       <div
-        className="absolute right-[2%] top-[70%] z-20 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-medium shadow-lg"
-        style={{ background: T.ink, color: T.accentBright, fontFamily: FONT.mono }}
+        className="absolute right-[2%] top-[70%] z-20 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.35)] ring-1 ring-black/5"
+        style={{ background: "#FFFFFF", color: T.ink, fontFamily: FONT.mono }}
       >
-        <span aria-hidden>●</span> {HERO_RENDER.format} · 1320×2868
+        <span aria-hidden style={{ color: T.accent }}>●</span> {HERO_RENDER.format} · 1320×2868
       </div>
       <CodeCard />
     </div>
@@ -124,7 +124,7 @@ function CodeCard() {
         {"  "}<span style={k}>return</span> ({"\n"}
         {"    "}<span style={tag}>{"<LshootLayout"}</span>{"\n"}
         {"      "}<span style={attr}>headline</span>=<span style={str}>{'"Screenshots, written in JSX"'}</span>{"\n"}
-        {"      "}<span style={attr}>screen</span>={"{"}<span style={tag}>{"<EditorMockup />"}</span>{"}"}{"\n"}
+        {"      "}<span style={attr}>screen</span>={"{"}<span style={tag}>{"<StudioMockup />"}</span>{"}"}{"\n"}
         {"    "}<span style={tag}>{"/>"}</span>{"\n"}
         {"  "});{"\n"}
         {"}"}

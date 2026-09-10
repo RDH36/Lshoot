@@ -31,20 +31,22 @@ export function Showcase() {
         <div aria-hidden className="absolute inset-y-0 right-0 w-24 z-10" style={{ background: `linear-gradient(to left, ${T.ink2}, transparent)` }} />
         <div className="lshoot-marquee flex w-max gap-5 pl-5 group-hover:[animation-play-state:paused]">
           {track.map((item, i) => (
-            <figure key={`${item.src}-${i}`} className="shrink-0">
+            <figure key={`${item.src}-${i}`} className="shrink-0 w-[11rem] sm:w-[12.9rem]">
               <div className="rounded-[1.4rem] overflow-hidden ring-1 ring-white/10 transition-transform duration-500 hover:-translate-y-2">
                 <Image
                   src={item.src}
-                  alt={`${item.app} screenshot`}
+                  alt={`${item.app} App Store screenshot generated with Lshoot`}
                   width={item.width}
                   height={item.height}
-                  sizes="16rem"
-                  className="block h-[24rem] sm:h-[28rem] w-auto"
+                  sizes="13rem"
+                  className="block w-full h-auto"
                 />
               </div>
-              <figcaption className="mt-3 flex items-center justify-between text-[11px]" style={{ fontFamily: FONT.mono, color: "#8B8F98" }}>
-                <span style={{ color: "#D6DEEB" }}>{item.app}</span>
-                <span>{item.format}</span>
+              <figcaption className="mt-3 flex flex-col items-start gap-1.5 text-[11px]" style={{ fontFamily: FONT.mono }}>
+                <span className="font-semibold" style={{ color: "#F6F4EE" }}>{item.app}</span>
+                <span className="rounded-full px-2 py-[3px] leading-none" style={{ background: "#F6F4EE", color: "#15161A" }}>
+                  {item.format}
+                </span>
               </figcaption>
             </figure>
           ))}

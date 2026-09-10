@@ -2,6 +2,11 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Tailwind v4 skips gitignored files during automatic source detection, and
+   projects/ is gitignored so each user's work stays local. Declare it
+   explicitly or screenshot classes silently stop being generated. */
+@source "../projects/**/*.{ts,tsx}";
+
 @custom-variant dark (&:is(.dark *));
 
 html {

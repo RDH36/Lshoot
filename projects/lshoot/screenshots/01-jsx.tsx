@@ -1,6 +1,6 @@
-// Lshoot's own hero — the editor inside the rounded phone, value prop in the ribbon
+// Lshoot's own hero — the app screen in the rounded phone, value prop in the ribbon
 import { LshootLayout } from "../components/Layout";
-import { EditorMockup } from "../components/EditorMockup";
+import { StudioMockup } from "../components/StudioMockup";
 
 export default function Jsx() {
   return (
@@ -12,7 +12,7 @@ export default function Jsx() {
           written in JSX
         </>
       }
-      screen={<EditorMockup />}
+      screen={<StudioMockup />}
     />
   );
 }

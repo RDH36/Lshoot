@@ -37,6 +37,9 @@ const RENDER_FLAGS = [
 export function getBrowser(): Promise<Browser> {
   if (!browserPromise) {
     browserPromise = puppeteer.launch({
+      // A cold Next.js dev compile of a heavy screenshot can exceed the 180s
+      // default and abort the whole export with "Runtime.callFunctionOn timed out".
+      protocolTimeout: 600000,
       headless: true,
       args: RENDER_FLAGS,
       defaultViewport: null,
